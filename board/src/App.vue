@@ -98,8 +98,9 @@ export default{
 </script>
 
 <style>
-
+    @import url('https://fonts.googleapis.com/css2?family=Zen+Kurenaido&display=swap');
     body{
+        font-family: 'Zen Kurenaido', sans-serif;
         text-align: center;
         background-color: #F6F6F8;
     }

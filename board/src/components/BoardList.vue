@@ -47,6 +47,7 @@ export default{
 
 <style scoped>
     label{
+        font-weight: bold;
         width: 100px;
     }
     i{
