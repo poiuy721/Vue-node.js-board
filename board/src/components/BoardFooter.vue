@@ -4,7 +4,7 @@
         <span class="registBtn" @click="showRegist">Regist</span>
     </div>
     <div class="clearAllContainer">
-        <span class="clearAllBtn" @click="clearTodo">Clear All</span>
+        <span class="clearAllBtn" @click="clearAll">Clear All</span>
     </div>
 </div>
 </template>
@@ -15,8 +15,8 @@ export default{
         showRegist(){
             this.$emit('showRegist');
         },
-        clearTodo(){
-            this.$emit('removeAll');
+        clearAll(){
+            this.$emit('clearAll');
         }
     }
 }

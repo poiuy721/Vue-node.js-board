@@ -5,7 +5,7 @@
       <BoardDetail @closeBoard="closeBoard" :propsdata="item" v-show="detailFlag"></BoardDetail>
       <BoardInput class="BoardInput" @createBoard="createBoard" v-show="registFlag"></BoardInput>
       <BoardEdit class="BoardEdit" :boardId="boardId" @editBoard="editBoard" v-show="editFlag"></BoardEdit>
-      <BoardFooter @removeAll="clearAll" @showRegist="showRegistForm"></BoardFooter>
+      <BoardFooter @clearAll="clearAll" @showRegist="showRegistForm"></BoardFooter>
 
     </div>
 </template>
@@ -72,8 +72,9 @@ export default{
       })
     },
     clearAll(){
-      localStorage.clear();
-      this.items=[];
+      axios.delete('http://localhost:3000/restapi/board/').then((res)=>{
+        this.$router.go();
+      })
     },
     showRegistForm(){
       if(this.registFlag==false)
