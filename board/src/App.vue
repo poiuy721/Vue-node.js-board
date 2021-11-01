@@ -1,11 +1,11 @@
 <template>
     <div id="app">
       <BoardHeader></BoardHeader>
-      <BoardList v-bind:propsdata="items" @deleteBoard="deleteBoard" @openEditBoard="openEditBoard" @readOne="readOne"></BoardList>
-      <BoardDetail v-on:closeBoard="closeBoard" v-bind:propsdata="item" v-show="detailFlag"></BoardDetail>
-      <BoardInput class="BoardInput" v-on:createBoard="createBoard" v-show="registFlag"></BoardInput>
-      <BoardEdit class="BoardEdit" v-bind:boardId="boardId" v-on:editBoard="editBoard" v-show="editFlag"></BoardEdit>
-      <BoardFooter v-on:removeAll="clearAll" v-on:showRegist="showRegistForm"></BoardFooter>
+      <BoardList :propsdata="items" @deleteBoard="deleteBoard" @openEditBoard="openEditBoard" @readOne="readOne"></BoardList>
+      <BoardDetail @closeBoard="closeBoard" :propsdata="item" v-show="detailFlag"></BoardDetail>
+      <BoardInput class="BoardInput" @createBoard="createBoard" v-show="registFlag"></BoardInput>
+      <BoardEdit class="BoardEdit" :boardId="boardId" @editBoard="editBoard" v-show="editFlag"></BoardEdit>
+      <BoardFooter @removeAll="clearAll" @showRegist="showRegistForm"></BoardFooter>
 
     </div>
 </template>
@@ -41,9 +41,7 @@ export default{
     },
     readOne(boardId){
       axios.get('http://localhost:3000/restapi/board/'+boardId).then((res)=>{
-        console.log(res.data[0])
         this.item=res.data[0]
-        console.log(this.item)
         this.detailFlag=true;
       })
     },
@@ -69,7 +67,6 @@ export default{
       })
     },
     deleteBoard(boardId){
-      console.log("delete "+boardId)
       axios.delete('http://localhost:3000/restapi/board/'+boardId).then((res)=>{
         this.$router.go();
       })

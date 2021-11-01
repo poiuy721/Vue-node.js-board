@@ -2,16 +2,14 @@
     <section>
         <ul>
             <li>
-                <label>Id</label>
                 <label>Image</label>
                 <label>Title</label>
                 <label>Content</label>
             </li>
         </ul>
         <transition-group name="list" tag="ul">
-            <li v-for="(board) in propsdata" :key="board" class="shadow">
-                <i class="checkBtn fas" aria-hidden="true">{{board.id}}</i>
-                <img :src="require(`@/assets/${board.image}`)" width="70px" height="50px"  @click="readOne(board.id)"/>
+            <li v-for="board in propsdata" :key="board.id" class="shadow">
+                <img :src='`http://localhost:3000/image/${board.image}`' width="70px" height="50px"  @click="readOne(board.id)"/>
                 <a name="title"  @click="readOne(board.id)">{{board.title}}</a>
                 <a name="content" @click="readOne(board.id)">{{board.content}}</a>
                 <span class="editBtn" type="button" @click="editBoard(board.id)">
@@ -49,7 +47,7 @@ export default{
 
 <style scoped>
     label{
-        width: 70px;
+        width: 100px;
     }
     i{
         width: 30px;

@@ -1,26 +1,26 @@
 <template>
 <section>
-    <transition-group name="item" tag="ul">
-        <img :key="item" :src="require(`@/assets/${propsdata.image}`)" width="200px" height="200px"/>
-        <li :key="item">
+    <ul v-if="propsdata.image">
+        <img :src='`http://localhost:3000/image/${propsdata.image}`' width="200px" height="200px"/>
+        <li>
             Id: {{propsdata.id}}
         </li>
-        <li :key="item">
+        <li>
             Title: {{propsdata.title}}
         </li>
-        <li :key="item">
+        <li>
             Content: {{propsdata.content}}
         </li>
-        <li :key="item">
-            Created At: {{propsdata.createdAt}}
+        <li>
+            Created At: {{this.formatDate(propsdata.createdAt)}}
         </li>
-        <li :key="item">
-            Updated At: {{propsdata.updatedAt}}
+        <li>
+            Updated At: {{this.formatDate(propsdata.updatedAt)}}
         </li>
-        <div :key="item" class="closeContainer">
+        <div class="closeContainer">
             <span class="closeBtn" @click="closeBoard">Close</span>
         </div>
-        </transition-group>
+        </ul>
 </section>
 </template>
 <script>
@@ -32,6 +32,14 @@ export default{
         }
     },
     methods:{
+        formatDate(date) {
+            const tmpDate=new Date(date)
+            return tmpDate.getFullYear() + '년 ' + 
+                (tmpDate.getMonth() + 1) + '월 ' + 
+                tmpDate.getDate() + '일 ' + 
+                tmpDate.getHours() + '시 ' + 
+                tmpDate.getMinutes() + '분';
+        },
         closeBoard(){
             this.$emit('closeBoard');
         }

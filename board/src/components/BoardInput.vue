@@ -44,7 +44,6 @@ export default{
                 form.append('file',this.newFile)
                 this.$emit('createBoard',form);
                 this.clearInput();
-                console.log("create 1")
             }else{
                 this.showModal=!this.showModal;
             }

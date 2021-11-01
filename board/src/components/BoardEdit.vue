@@ -1,7 +1,7 @@
 <template>
     <div class="inputBox shadow">
         <form method="POST" id="editForm" enctype="multipart/form-data">
-            <input class="editTitle" type="text" v-model="editTitle" placeholder="Title" v-on:keyup.enter="createBoard">
+            <input class="editTitle" type="text" v-model="editTitle" placeholder="title" v-on:keyup.enter="createBoard">
             <input class="editContent" type="text" v-model="editContent" placeholder="Content" v-on:keyup.enter="createBoard">
             <input class="editImage" type='file' ref="serveyImage" @change="onSelect">
             <span class="addContainer" v-on:click="editBoard">
@@ -35,7 +35,6 @@ export default{
                 form.append('file',this.editFile)
                 this.$emit('editBoard',form,this.boardId);
                 this.clearInput();
-                console.log("edit 1")
         },
         clearInput(){
             this.editTitle='';
