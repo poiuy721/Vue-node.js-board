@@ -2,14 +2,18 @@
     <section>
         <ul>
             <li>
-                <label>Image</label>
-                <label>Title</label>
-                <label>Content</label>
+                <label class="leftLabel">Image</label>
+                <label class="leftLabel">Title</label>
+                <label class="leftLabel">Content</label>
+                <label class="emptyLabel"></label>
+                <label class="rightLabel">Edit</label>
+                <label class="rightLabel">Delete</label>
             </li>
         </ul>
         <transition-group name="list" tag="ul">
             <li v-for="board in propsdata" :key="board.id" class="shadow">
-                <img :src='`http://localhost:3000/image/${board.image}`' width="70px" height="50px"  @click="readOne(board.id)"/>
+                <img v-if="board.image.endsWith('.jpg')" :src='`http://localhost:3000/image/${board.image}`' width="70px" height="50px"  @click="readOne(board.id)"/>
+                <img v-else :src='`http://localhost:3000/image/noImage.jpg`'  width="70px" height="50px"  @click="readOne(board.id)"/>
                 <a name="title"  @click="readOne(board.id)">{{board.title}}</a>
                 <a name="content" @click="readOne(board.id)">{{board.content}}</a>
                 <span class="editBtn" type="button" @click="editBoard(board.id)">
@@ -49,6 +53,17 @@ export default{
     label{
         font-weight: bold;
         width: 100px;
+    }
+    .leftLabel{
+        text-align: left;
+    }
+    .emptyLabel{
+        width:70%;
+    }
+    .rightLabel{
+        float: right;
+        margin-left:0;
+        text-align:center
     }
     i{
         width: 30px;
@@ -92,8 +107,8 @@ export default{
         color: blue;
     }
     .removeBtn{
-        width: 50px;
-        text-align: right;
+        width: 100px;
+        text-align: center;
         color: #de4343;
     }
 </style>

@@ -1,7 +1,8 @@
 <template>
 <section>
     <ul v-if="propsdata.image">
-        <img :src='`http://localhost:3000/image/${propsdata.image}`' width="200px" height="200px"/>
+        <img v-if="propsdata.image.endsWith('.jpg')" :src='`http://localhost:3000/image/${propsdata.image}`' width="200px" height="200px"/>
+        <img v-else :src='`http://localhost:3000/image/noImage.jpg`'  width="200px" height="200px"/>
         <li>
             Id: {{propsdata.id}}
         </li>
@@ -34,11 +35,11 @@ export default{
     methods:{
         formatDate(date) {
             const tmpDate=new Date(date)
-            return tmpDate.getFullYear() + '년 ' + 
-                (tmpDate.getMonth() + 1) + '월 ' + 
-                tmpDate.getDate() + '일 ' + 
-                tmpDate.getHours() + '시 ' + 
-                tmpDate.getMinutes() + '분';
+            return tmpDate.getFullYear() + '/' + 
+                (tmpDate.getMonth() + 1) + '/' + 
+                tmpDate.getDate() + '   ' + 
+                tmpDate.getHours() + ':' + 
+                tmpDate.getMinutes() + '';
         },
         closeBoard(){
             this.$emit('closeBoard');

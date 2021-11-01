@@ -41,7 +41,8 @@ export default{
                 var content=this.newContent&&this.newContent.trim();
                 form.append('title',title)
                 form.append('content',content)
-                form.append('file',this.newFile)
+                if(this.newFile)
+                    form.append('file',this.newFile);
                 this.$emit('createBoard',form);
                 this.clearInput();
             }else{
